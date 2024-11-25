@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Musicians</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            justify-content: center;
+            align-items: center;
+            background-color: #111;
+        }
+
+        #container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .image, .text {
+            position: absolute;
+            transition: opacity 1.5s ease-in-out;
+            opacity: 0;
+        }
+
+        .visible {
+            opacity: 1;
+        }
+
+        .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            mix-blend-mode: screen;
+        }
+
+        .text {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img id="image" class="image" src="">
+        <div id="text" class="text"></div>
+    </div>
+
+    <script>
+        const images = [
+            { src: "https://acortar.link/D5kS3n", text: "Lilypichu, Twitch streamer, YouTuber, musician, and voice actress." },
+            { src: "https://acortar.link/nA2oiJ", text: "Lizzo, Grammy-winning singer and rapper known for body-positive messages." },
+            { src: "https://acortar.link/pfA9y6", text: "Laufey, indie pop singer-songwriter with folk influences." },
+            { src: "https://acortar.link/dwuzGY", text: "Adam Neely, musician, bassist, composer, and YouTuber focused on music theory." },
+            { src: "https://acortar.link/Q0VUmw", text: "The Weeknd, Canadian singer and producer known for his dark R&B style." },
+            { src: "https://acortar.link/U1GC6W", text: "Jain, French singer-songwriter with influences of pop, reggae, and world music." },
+            { src: "https://acortar.link/OcCFBh", text: "JVKE, American singer and producer famous for his pop hits and TikTok presence." },
+            { src: "https://acortar.link/Xlvv4j", text: "The Living Tombstone, music producer known for EDM and video game-inspired music." },
+            { src: "https://acortar.link/FbCsgq", text: "Insaneintherainmusic, saxophonist and YouTuber known for jazz covers of video game music." },
+            { src: "https://acortar.link/ZwZlFM", text: "Taylor Swift, acclaimed singer-songwriter known for her transition from country to pop." },
+            { src: "https://acortar.link/pEcesi", text: "Aitana, Spanish singer who gained fame through 'Operación Triunfo'." },
+            { src: "https://acortar.link/u7Fvf7", text: "Sofiane Pamart, French pianist blending classical music with contemporary influences." },
+            { src: "https://acortar.link/EFYz4w", text: "AJR, American indie pop band known for their catchy melodies and modern themes." },
+            { src: "https://acortar.link/GlQ4Ej", text: "Billy Joel, legendary American singer-songwriter known for hits like 'Piano Man'." },
+            { src: "https://acortar.link/niUisK", text: "Queen, legendary British rock band known for hits like 'Bohemian Rhapsody'." }
+        ];
+
+        let currentIndex = 0;
+
+        const imageElement = document.getElementById('image');
+        const textElement = document.getElementById('text');
+
+        function changeImage() {
+            imageElement.classList.remove('visible');
+            textElement.classList.remove('visible');
+
+            setTimeout(() => {
+                currentIndex = (currentIndex + 1) % images.length;
+                imageElement.src = images[currentIndex].src;
+                textElement.textContent = images[currentIndex].text;
+
+                imageElement.onload = () => {
+                    imageElement.classList.add('visible');
+                    textElement.classList.add('visible');
+                };
+            }, 1500);
+        }
+
+        setInterval(changeImage, 5500);
+
+        // Establece la imagen y el texto inicial
+        imageElement.src = images[currentIndex].src;
+        textElement.textContent = images[currentIndex].text;
+        imageElement.classList.add('visible');
+        textElement.classList.add('visible');
+    </script>
+</body>
+</html>
